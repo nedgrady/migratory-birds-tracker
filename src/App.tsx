@@ -60,6 +60,7 @@ function createFakeBirdData() {
 
 function App() {
 	const { isLoaded } = useLoadScript({
+		// TODO - add to secrets
 		googleMapsApiKey: "AIzaSyAryrchXqhY1TtykuGeKPA0BjjOZMcyyAM",
 		libraries: ["visualization"]
 	})
@@ -100,6 +101,8 @@ function App() {
 		</div>
 		</div>
 	}
+
+	return <>Loading or something went wrong</>
 }
 
 export default App
