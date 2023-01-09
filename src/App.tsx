@@ -3,16 +3,10 @@ import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import birdNames from "./birdNames"
 import { add } from "date-fns"
 import BirdLegendItem from "./BirdLegendItem"
-
+import sightings from "./birdData"
 type LatLngCollection = google.maps.MVCArray<google.maps.LatLng | google.maps.visualization.WeightedLocation> | (google.maps.LatLng | google.maps.visualization.WeightedLocation)[]
 
-export interface Event {
-	location: {
-		coorinates: google.maps.LatLng
-		description: string
-	}
-	timestamp: Date
-}
+
 
 export interface Bird {
 	name: string
@@ -36,28 +30,6 @@ function randomHeatMapRange() {
 	]
 }
 
-function createFakeBirdData() {
-
-	const birds: Bird[] = range(1, 4).map<Bird>((_, birdIndex) => {
-		var birdName = birdNames[Math.floor(Math.random() * birdNames.length)]
-
-		const sightings = range(0, Math.ceil(Math.random() * 20) + 5).map<Event>((_, sightingIndex) => ({
-			location: {
-				coorinates: new google.maps.LatLng({ lat: 53.55150  - (sightingIndex / 100)  + Math.random() / 50, lng: -2.009010 + 5 * (birdIndex / 100) + Math.random() / 50 }),
-				description: "somewhere"
-			},
-			timestamp: add(new Date(), { days: -sightingIndex })
-		}))
-
-		return {
-			name: birdName,
-			sightings
-		}
-	})
-
-	return birds
-}
-
 function App() {
 	const { isLoaded } = useLoadScript({
 		// TODO - add to secrets
@@ -66,38 +38,22 @@ function App() {
 	})
 
 	if (isLoaded) {
-		const birdData = createFakeBirdData()
-		const birdDisplay : BirdDisplay[] = birdData.map((bird, _) => ({
-			name: bird.name,
-			sightings: bird.sightings,
-			heatmapColors: randomHeatMapRange()
-		}))
-
 		return <div style={{display: "flex", gap:"10px"}}><GoogleMap
 			center={{ lat: 53.55153, lng: -2.009018 }}
-			zoom={12}
+			zoom={6}
 			onLoad={(map) => {
-				for (const birdDatum of birdDisplay) {
-					const heatMapData: LatLngCollection = birdDatum.sightings.map(sighting => ({
-						location: sighting.location.coorinates,
-						weight: Math.random()
-					}));
+				var heatmap = new google.maps.visualization.HeatmapLayer({
+					data: sightings.map(sighting => new google.maps.LatLng(sighting.location.latitude, sighting.location.longitude)),
+					radius: 8,
+					opacity: 0.9
+				});
 
-					var heatmap = new google.maps.visualization.HeatmapLayer({
-						data: heatMapData,
-						gradient: randomHeatMapRange(),
-						radius: 25,
-						opacity: 0.9
-					});
-
-					heatmap.setMap(map);
-				}
-
+				heatmap.setMap(map);
 			}}
 			mapContainerStyle={{ height: "98vh", width: "50%" }}
 		/>
 		<div>
-			{birdDisplay.map(birdDisplay => <BirdLegendItem bird={birdDisplay} key={birdDisplay.name} />)}
+			{/* {birdDisplay.map(birdDisplay => <BirdLegendItem bird={birdDisplay} key={birdDisplay.name} />)} */}
 		</div>
 		</div>
 	}

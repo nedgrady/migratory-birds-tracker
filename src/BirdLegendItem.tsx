@@ -7,7 +7,7 @@ const PaddedP = styled.p`
 `
 export default function BirdLegendItem({ bird }: { bird: BirdDisplay }) {
     return <>
-        <div
+        {/* <div
             style={{
                 backgroundImage: `linear-gradient(to right, ${bird.heatmapColors[1]}, ${bird.heatmapColors[2]})`,
                 width: "500px",
@@ -18,6 +18,6 @@ export default function BirdLegendItem({ bird }: { bird: BirdDisplay }) {
                 <PaddedP>First sighting:  {format(bird.sightings[0].timestamp, "dd MMM yyyy")}</PaddedP>
                 <PaddedP>Last sighting:  {format(bird.sightings.reverse()[0].timestamp, "dd MMM yyyy")}</PaddedP>
             </div>
-        </div>
+        </div> */}
     </>
 }
