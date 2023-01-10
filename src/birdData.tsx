@@ -1,3 +1,5 @@
+import { compareAsc,  } from "date-fns"
+
 export interface Event {
 	location: {
 		latitude: number
@@ -7,7 +9,7 @@ export interface Event {
 	timestamp: Date
 }
 
-type Sighting = Event & {
+export type Sighting = Event & {
 	bird: "Waxwing"
 	source: string
 }
@@ -22,4 +24,4 @@ const sightings: Sighting[] = [
 	{ bird: "Waxwing", source: "WSUK", timestamp: new Date(2023, 0, 9), location: { latitude: 55.8057644580282, longitude: -4.27077231621384, description: "Glasgow on Clarkston Road", } },
 ]
 
-export default sightings
+export default sightings.sort((a, b) => compareAsc(a.timestamp, b.timestamp))

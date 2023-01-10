@@ -4,6 +4,7 @@ import birdNames from "./birdNames"
 import { add } from "date-fns"
 import BirdLegendItem from "./BirdLegendItem"
 import sightings from "./birdData"
+import SightingList from "./SightingsList"
 type LatLngCollection = google.maps.MVCArray<google.maps.LatLng | google.maps.visualization.WeightedLocation> | (google.maps.LatLng | google.maps.visualization.WeightedLocation)[]
 
 
@@ -53,7 +54,7 @@ function App() {
 			mapContainerStyle={{ height: "98vh", width: "50%" }}
 		/>
 		<div>
-			{/* {birdDisplay.map(birdDisplay => <BirdLegendItem bird={birdDisplay} key={birdDisplay.name} />)} */}
+			<SightingList sightings={sightings} />
 		</div>
 		</div>
 	}
