@@ -1,35 +1,7 @@
 
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
-import birdNames from "./birdNames"
-import { add } from "date-fns"
-import BirdLegendItem from "./BirdLegendItem"
 import sightings from "./birdData"
 import SightingList from "./SightingsList"
-type LatLngCollection = google.maps.MVCArray<google.maps.LatLng | google.maps.visualization.WeightedLocation> | (google.maps.LatLng | google.maps.visualization.WeightedLocation)[]
-
-
-
-export interface Bird {
-	name: string
-	sightings: Event[]
-}
-
-export type BirdDisplay = Bird & {
-	heatmapColors: string[]
-}
-
-function range(start: number, count: number): number[] {
-	return [...Array(count)].map((_, index) => start + index)
-}
-
-function randomHeatMapRange() {
-	const ran = () => Math.floor(Math.random() * 256)
-	return [
-		`rgba(0, 255, 255, 0)`,
-		`rgba(${ran()}, ${ran()}, ${ran()}, 1)`,
-		`rgba(${ran()}, ${ran()}, ${ran()}, 1)`
-	]
-}
 
 function App() {
 	const { isLoaded } = useLoadScript({
