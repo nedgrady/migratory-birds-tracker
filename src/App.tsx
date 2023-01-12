@@ -2,6 +2,8 @@
 import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material"
 import { useMemo } from "react";
 import BirdTracker from "./BirdTracker"
+import Layout from "./Layout";
+import "./App.css"
 
 function App() {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -18,7 +20,9 @@ function App() {
 
 	return <ThemeProvider theme={theme}>
 		<CssBaseline />
-		<BirdTracker />
+		<Layout>
+			<BirdTracker />
+		</Layout>
 	</ThemeProvider>
 }
 
