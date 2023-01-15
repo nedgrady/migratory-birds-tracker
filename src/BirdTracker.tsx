@@ -18,10 +18,10 @@ export default function BirdTracker() {
 					<GoogleMap
 						center={{ lat: 53.55153, lng: -2.009018 }}
 						zoom={6}
-						onLoad={(map) => {
+						onLoad={map => {
 							var heatmap = new google.maps.visualization.HeatmapLayer({
 								data: sightings.map(
-									(sighting) =>
+									sighting =>
 										new google.maps.LatLng(sighting.location.latitude, sighting.location.longitude)
 								),
 								radius: 8,
@@ -34,6 +34,7 @@ export default function BirdTracker() {
 					/>
 				</Grid>
 				<Grid xs={12} md={6} item>
+					<p>Test</p>
 					<SightingList sightings={sightings} />
 				</Grid>
 			</Grid>
