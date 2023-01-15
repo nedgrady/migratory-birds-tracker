@@ -17,6 +17,8 @@ function App() {
 		[prefersDarkMode]
 	)
 
+	document.title = `${document.title} (${__COMMIT_HASH__})`
+
 	return (
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
