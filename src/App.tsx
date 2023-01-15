@@ -2,7 +2,7 @@ import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/mat
 import { useMemo } from "react"
 import BirdTracker from "./BirdTracker"
 import Layout from "./Layout"
-import { Routes, Route, Outlet, Link, BrowserRouter, HashRouter } from "react-router-dom"
+import { Routes, Route, Link, HashRouter } from "react-router-dom"
 
 function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
