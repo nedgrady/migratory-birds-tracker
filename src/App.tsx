@@ -2,7 +2,7 @@ import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/mat
 import { useMemo } from "react"
 import BirdTracker from "./BirdTracker"
 import Layout from "./Layout"
-import { Routes, Route, Outlet, Link, BrowserRouter } from "react-router-dom"
+import { Routes, Route, Outlet, Link, BrowserRouter, HashRouter } from "react-router-dom"
 
 function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
@@ -21,7 +21,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<Layout>
-				<BrowserRouter basename="migratory-birds-tracker">
+				<HashRouter>
 					<Routes>
 						<Route path="" element={<BirdTracker />} />
 						<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
@@ -35,7 +35,7 @@ function App() {
 							}
 						/>
 					</Routes>
-				</BrowserRouter>
+				</HashRouter>
 			</Layout>
 		</ThemeProvider>
 	)
