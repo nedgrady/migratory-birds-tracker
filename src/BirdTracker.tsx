@@ -1,5 +1,5 @@
 //import Grid from '@mui/material/Unstable_Grid2'
-import { Grid } from "@mui/material"
+import { Grid, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material"
 import { GoogleMap, useLoadScript } from "@react-google-maps/api"
 import sightings from "./birdData"
 import SightingList from "./SightingsList"
@@ -34,7 +34,15 @@ export default function BirdTracker() {
 					/>
 				</Grid>
 				<Grid xs={12} md={6} item>
-					<p>Test</p>
+					<TableContainer>
+						<Table>
+							<TableBody>
+								<TableRow>
+									<TableCell>Test</TableCell>
+								</TableRow>
+							</TableBody>
+						</Table>
+					</TableContainer>
 					<SightingList sightings={sightings} />
 				</Grid>
 			</Grid>
