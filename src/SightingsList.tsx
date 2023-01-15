@@ -20,7 +20,7 @@ const columnHelper = createColumnHelper<Sighting>()
 const columns = [
 	columnHelper.accessor("source", {}),
 	columnHelper.accessor("timestamp", {
-		cell: (info) => format(info.getValue(), "dd/MM/yyyy"),
+		cell: info => format(info.getValue(), "dd/MM/yyyy"),
 	}),
 	columnHelper.accessor("location.description", {
 		header: "Location",
@@ -35,29 +35,29 @@ export default function SightingList({ sightings }: { sightings: Sighting[] }) {
 	})
 
 	return (
-		<TableContainer>
-			<Table>
-				<TableHead>
-					<TableRow>
-						{table.getFlatHeaders().map((header) => (
-							<TableCell key={header.id} style={{ textTransform: "capitalize" }}>
-								{flexRender(header.column.columnDef.header, header.getContext())}
+		// <TableContainer>
+		<Table>
+			<TableHead>
+				<TableRow>
+					{table.getFlatHeaders().map(header => (
+						<TableCell key={header.id} style={{ textTransform: "capitalize" }}>
+							{flexRender(header.column.columnDef.header, header.getContext())}
+						</TableCell>
+					))}
+				</TableRow>
+			</TableHead>
+			<TableBody>
+				{table.getRowModel().rows.map(row => (
+					<TableRow key={row.id}>
+						{row.getVisibleCells().map(cell => (
+							<TableCell key={cell.id}>
+								{flexRender(cell.column.columnDef.cell, cell.getContext())}
 							</TableCell>
 						))}
 					</TableRow>
-				</TableHead>
-				<TableBody>
-					{table.getRowModel().rows.map((row) => (
-						<TableRow key={row.id}>
-							{row.getVisibleCells().map((cell) => (
-								<TableCell key={cell.id}>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
-								</TableCell>
-							))}
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+				))}
+			</TableBody>
+		</Table>
+		// </TableContainer>
 	)
 }
