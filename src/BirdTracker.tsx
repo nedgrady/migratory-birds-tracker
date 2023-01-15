@@ -34,15 +34,6 @@ export default function BirdTracker() {
 					/>
 				</Grid>
 				<Grid xs={12} md={6} item>
-					<TableContainer>
-						<Table>
-							<TableBody>
-								<TableRow>
-									<TableCell>Test</TableCell>
-								</TableRow>
-							</TableBody>
-						</Table>
-					</TableContainer>
 					<SightingList sightings={sightings} />
 				</Grid>
 			</Grid>
