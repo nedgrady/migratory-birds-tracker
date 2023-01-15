@@ -1,58 +1,114 @@
-import { Sighting } from "./birdData"
-import {
-	CellContext,
-	ColumnDefTemplate,
-	createColumnHelper,
-	flexRender,
-	getCoreRowModel,
-	useReactTable,
-} from "@tanstack/react-table"
+import { Sighting, sightingsAtom } from "./birdData"
+import { createColumnHelper } from "@tanstack/react-table"
 import { format } from "date-fns"
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
+import { Autocomplete, Button, FormControl, FormGroup, Input, Stack, TextField } from "@mui/material"
+import { DataGrid, GridColDef } from "@mui/x-data-grid"
+import Grid from "@mui/material/Unstable_Grid2"
+import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker"
+import { usePlacesWidget } from "react-google-autocomplete"
+import { useState } from "react"
+import useRecoilArray from "./useRecoilArray"
 
-const columnHelper = createColumnHelper<Sighting>()
-
-const columns = [
-	columnHelper.accessor("source", {}),
-	columnHelper.accessor("timestamp", {
-		cell: info => format(info.getValue(), "dd/MM/yyyy"),
-	}),
-	columnHelper.accessor("location.description", {
-		header: "Location",
-	}),
+const columns: GridColDef<Sighting>[] = [
+	{ field: "source", headerName: "Source" },
+	{
+		field: "timestamp",
+		headerName: "Timestamp",
+		valueFormatter: col => format(col.value, "dd/MM/yyyy"),
+	},
+	{
+		field: "location",
+		headerName: "Location",
+		valueFormatter: col => col.value.description,
+		flex: 1,
+	},
 ]
 
-export default function SightingList({ sightings }: { sightings: Sighting[] }) {
-	const table = useReactTable({
-		data: sightings,
-		columns,
-		getCoreRowModel: getCoreRowModel(),
+export default function SightingList() {
+	const { array: sightings } = useRecoilArray(sightingsAtom)
+	return (
+		<Stack spacing={2} height="100%">
+			<AddSighting />
+			<DataGrid rows={sightings} columns={columns} style={{ flex: 1 }} />
+		</Stack>
+	)
+}
+
+function AddSighting() {
+	const [location, setLocation] = useState<google.maps.places.PlaceResult>()
+
+	const { ref } = usePlacesWidget({
+		apiKey: "AIzaSyAryrchXqhY1TtykuGeKPA0BjjOZMcyyAM",
+		onPlaceSelected: placeResult => {
+			setLocation(placeResult)
+			console.log(placeResult)
+		},
 	})
 
+	const { add } = useRecoilArray(sightingsAtom)
+
+	const [date, setDate] = useState<Date | null>(new Date())
+	const [source, setSource] = useState<string>("No Source")
+
+	const handleChange = (newValue: Date | null) => {
+		setDate(newValue)
+	}
+
+	function handleSightingAdded() {
+		const newSighting: Sighting = {
+			bird: "Waxwing",
+			id: new Date().getTime(),
+			location: {
+				description: location?.formatted_address ?? "Nowhere",
+				latitude: location?.geometry?.location?.lat() ?? 0,
+				longitude: location?.geometry?.location?.lng() ?? 0,
+			},
+
+			source: source,
+			timestamp: date ?? new Date(),
+		}
+
+		add(newSighting)
+	}
+
 	return (
-		<TableContainer>
-			<Table>
-				<TableHead>
-					<TableRow>
-						{table.getFlatHeaders().map(header => (
-							<TableCell key={header.id} style={{ textTransform: "capitalize" }}>
-								{flexRender(header.column.columnDef.header, header.getContext())}
-							</TableCell>
-						))}
-					</TableRow>
-				</TableHead>
-				<TableBody>
-					{table.getRowModel().rows.map(row => (
-						<TableRow key={row.id}>
-							{row.getVisibleCells().map(cell => (
-								<TableCell key={cell.id}>
-									{flexRender(cell.column.columnDef.cell, cell.getContext())}
-								</TableCell>
-							))}
-						</TableRow>
-					))}
-				</TableBody>
-			</Table>
-		</TableContainer>
+		<form>
+			<FormGroup row={true}>
+				<Grid container margin={0} gap={1}>
+					<FormControl component={Grid}>
+						<Autocomplete
+							options={["WLUK", "WSUK"]}
+							renderInput={params => <TextField {...params} label="Source" />}
+							onChange={(_, value) => setSource(value ?? "Nowhere")}
+						/>
+					</FormControl>
+
+					<FormControl component={Grid}>
+						<DesktopDatePicker
+							label="Date"
+							inputFormat="MM/dd/yyyy"
+							renderInput={params => <TextField {...params} />}
+							value={date}
+							onChange={handleChange}
+						/>
+					</FormControl>
+
+					<FormControl component={Grid}>
+						<TextField inputRef={ref} label="Location" />
+					</FormControl>
+
+					<FormControl component={Grid}>
+						<Button
+							variant="outlined"
+							size="large"
+							style={{ height: "100%" }}
+							onClick={handleSightingAdded}
+						>
+							Add
+						</Button>
+					</FormControl>
+				</Grid>
+			</FormGroup>
+		</form>
 	)
 }

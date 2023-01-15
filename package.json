@@ -17,6 +17,8 @@
 		"@googlemaps/react-wrapper": "^1.1.35",
 		"@googlemaps/typescript-guards": "^2.0.3",
 		"@mui/material": "^5.11.4",
+		"@mui/x-data-grid": "^5.17.18",
+		"@mui/x-date-pickers": "^5.0.13",
 		"@react-google-maps/api": "^2.17.1",
 		"@tanstack/react-table": "^8.7.6",
 		"@types/google.maps": "^3.51.0",
@@ -24,7 +26,9 @@
 		"fast-equals": "^4.0.3",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
+		"react-google-autocomplete": "^2.7.1",
 		"react-router-dom": "^6.6.2",
+		"recoil": "^0.7.6",
 		"styled-components": "^5.3.6",
 		"use-deep-compare-effect": "^1.8.1"
 	},

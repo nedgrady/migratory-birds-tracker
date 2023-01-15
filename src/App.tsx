@@ -3,6 +3,9 @@ import { useMemo } from "react"
 import BirdTracker from "./BirdTracker"
 import Layout from "./Layout"
 import { Routes, Route, Link, HashRouter } from "react-router-dom"
+import { LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil"
 
 function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
@@ -21,24 +24,28 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
-			<Layout>
-				<HashRouter>
-					<Routes>
-						<Route path="" element={<BirdTracker />} />
-						<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
-						<Route
-							path="*"
-							element={
-								<>
-									<p>That's a 404 not found 🤔</p>
-									<Link to="/">Go back home</Link>
-								</>
-							}
-						/>
-					</Routes>
-				</HashRouter>
-			</Layout>
+			<LocalizationProvider dateAdapter={AdapterDateFns}>
+				<RecoilRoot>
+					<CssBaseline />
+					<Layout>
+						<HashRouter>
+							<Routes>
+								<Route path="" element={<BirdTracker />} />
+								<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
+								<Route
+									path="*"
+									element={
+										<>
+											<p>That's a 404 not found 🤔</p>
+											<Link to="/">Go back home</Link>
+										</>
+									}
+								/>
+							</Routes>
+						</HashRouter>
+					</Layout>
+				</RecoilRoot>
+			</LocalizationProvider>
 		</ThemeProvider>
 	)
 }
