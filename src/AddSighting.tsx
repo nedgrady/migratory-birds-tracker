@@ -10,7 +10,7 @@ export function AddSighting() {
 	const [location, setLocation] = useState<google.maps.places.PlaceResult>()
 
 	const { ref } = usePlacesWidget({
-		apiKey: "AIzaSyAryrchXqhY1TtykuGeKPA0BjjOZMcyyAM",
+		apiKey: "AIzaSyB4e95hs77z_MK-Chpdqm6_2dpZHR6PH7Y",
 		onPlaceSelected: placeResult => {
 			setLocation(placeResult)
 			console.log(placeResult)
