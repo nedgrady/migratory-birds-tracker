@@ -2,7 +2,7 @@ import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/mat
 import { useMemo } from "react"
 import BirdTracker from "./BirdTracker"
 import Layout from "./Layout"
-import { Routes, Route, Link, HashRouter } from "react-router-dom"
+import { Routes, Route, Link, HashRouter, BrowserRouter } from "react-router-dom"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
 import { RecoilRoot } from "recoil"
@@ -28,7 +28,7 @@ function App() {
 				<RecoilRoot>
 					<CssBaseline />
 					<Layout>
-						<HashRouter>
+						<BrowserRouter>
 							<Routes>
 								<Route path="" element={<BirdTracker />} />
 								<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
@@ -42,7 +42,7 @@ function App() {
 									}
 								/>
 							</Routes>
-						</HashRouter>
+						</BrowserRouter>
 					</Layout>
 				</RecoilRoot>
 			</LocalizationProvider>
