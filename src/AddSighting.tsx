@@ -1,10 +1,10 @@
-import { Sighting, sightingsAtom } from "./birdData"
+import { Sighting } from "./birdData"
 import { Autocomplete, Button, FormControl, FormGroup, TextField } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker"
 import { usePlacesWidget } from "react-google-autocomplete"
 import { useState } from "react"
-import useRecoilArray from "./useRecoilArray"
+import { useAddSighting } from "./useSightings"
 
 export function AddSighting() {
 	const [location, setLocation] = useState<google.maps.places.PlaceResult>()
@@ -17,7 +17,7 @@ export function AddSighting() {
 		},
 	})
 
-	const { add } = useRecoilArray(sightingsAtom)
+	const { mutate, isLoading } = useAddSighting()
 
 	const [date, setDate] = useState<Date | null>(new Date())
 	const [source, setSource] = useState<string>("No Source")
@@ -29,18 +29,17 @@ export function AddSighting() {
 	function handleSightingAdded() {
 		const newSighting: Sighting = {
 			bird: "Waxwing",
-			id: new Date().getTime(),
+			id: new Date().toISOString(),
 			location: {
 				description: location?.formatted_address ?? "Nowhere",
 				latitude: location?.geometry?.location?.lat() ?? 0,
 				longitude: location?.geometry?.location?.lng() ?? 0,
 			},
-
 			source: source,
 			timestamp: date ?? new Date(),
 		}
 
-		add(newSighting)
+		mutate(newSighting)
 	}
 
 	return (

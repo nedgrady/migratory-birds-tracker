@@ -11,14 +11,14 @@ export interface Event {
 }
 
 export type Sighting = Event & {
-	readonly id: number
+	readonly id: string
 	readonly bird: "Waxwing"
 	readonly source: string
 }
 
 const sightings: Sighting[] = [
 	{
-		id: 0,
+		id: "0",
 		bird: "Waxwing",
 		source: "WLUK",
 		timestamp: new Date(2023, 0, 9),
@@ -29,7 +29,7 @@ const sightings: Sighting[] = [
 		},
 	},
 	{
-		id: 1,
+		id: " 1",
 		bird: "Waxwing",
 		source: "WLUK",
 		timestamp: new Date(2023, 0, 9),
@@ -40,7 +40,7 @@ const sightings: Sighting[] = [
 		},
 	},
 	{
-		id: 3,
+		id: "3",
 		bird: "Waxwing",
 		source: "WLUK",
 		timestamp: new Date(2023, 0, 1),
@@ -51,7 +51,7 @@ const sightings: Sighting[] = [
 		},
 	},
 	{
-		id: 7,
+		id: "7",
 		bird: "Waxwing",
 		source: "WLUK",
 		timestamp: new Date(2023, 0, 9),
@@ -62,7 +62,7 @@ const sightings: Sighting[] = [
 		},
 	},
 	{
-		id: 5,
+		id: "5",
 		bird: "Waxwing",
 		source: "WLUK",
 		timestamp: new Date(2022, 11, 15),
@@ -73,7 +73,7 @@ const sightings: Sighting[] = [
 		},
 	},
 	{
-		id: 99,
+		id: "99",
 		bird: "Waxwing",
 		source: "WSUK",
 		timestamp: new Date(2023, 0, 9),
@@ -84,7 +84,7 @@ const sightings: Sighting[] = [
 		},
 	},
 	{
-		id: 6,
+		id: "6",
 		bird: "Waxwing",
 		source: "WSUK",
 		timestamp: new Date(2023, 0, 9),
@@ -95,10 +95,3 @@ const sightings: Sighting[] = [
 		},
 	},
 ]
-
-export const sightingsAtom = atom<Sighting[]>({
-	key: "textState", // unique ID (with respect to other atoms/selectors)
-	default: sightings, // default value (aka initial value)
-})
-
-//export default sightings.sort((a, b) => compareAsc(a.timestamp, b.timestamp))

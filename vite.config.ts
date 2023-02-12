@@ -7,6 +7,7 @@ const commitHash = execSync("git rev-parse HEAD").toString()
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [react()],
+	base: "/migratory-birds-tracker/#/",
 	define: {
 		__COMMIT_HASH__: JSON.stringify(commitHash),
 	},

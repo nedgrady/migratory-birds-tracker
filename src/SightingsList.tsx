@@ -1,10 +1,11 @@
-import { Sighting, sightingsAtom } from "./birdData"
 import { format } from "date-fns"
 import { Stack, useMediaQuery, useTheme } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import useRecoilArray from "./useRecoilArray"
 import { AddSighting } from "./AddSighting"
+import useSightings from "./useSightings"
+import { Sighting } from "./birdData"
 
 const columns: GridColDef<Sighting>[] = [
 	{ field: "source", headerName: "Source" },
@@ -22,9 +23,9 @@ const columns: GridColDef<Sighting>[] = [
 ]
 
 export default function SightingList() {
-	const { array: sightings } = useRecoilArray(sightingsAtom)
 	const theme = useTheme()
 	const isMobile = useMediaQuery(theme.breakpoints.up("xs"))
+	const sightings = useSightings()
 
 	const dataGridStyles: React.CSSProperties = {
 		height: isMobile ? "600px" : "100%",

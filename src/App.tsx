@@ -1,5 +1,5 @@
 import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material"
-import { useMemo } from "react"
+import { createContext, useContext, useMemo } from "react"
 import BirdTracker from "./BirdTracker"
 import Layout from "./Layout"
 import { Routes, Route, Link, HashRouter, BrowserRouter } from "react-router-dom"
@@ -9,6 +9,9 @@ import { RecoilRoot } from "recoil"
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
+import { QueryClientProvider, QueryClient } from "react-query"
+import { CosmosClient } from "@azure/cosmos"
+import { container, SightingsContainerContext } from "./useSightingsContainer"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,6 +33,14 @@ const analytics = getAnalytics(app)
 
 app.automaticDataCollectionEnabled = false
 
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: 3,
+		},
+	},
+})
+
 function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
 
@@ -46,30 +57,34 @@ function App() {
 	document.title = `${document.title} (${__COMMIT_HASH__})`
 
 	return (
-		<ThemeProvider theme={theme}>
-			<LocalizationProvider dateAdapter={AdapterDateFns}>
-				<RecoilRoot>
-					<CssBaseline />
-					<Layout>
-						<BrowserRouter>
-							<Routes>
-								<Route path="" element={<BirdTracker />} />
-								<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
-								<Route
-									path="*"
-									element={
-										<>
-											<p>That's a 404 not found 🤔</p>
-											<Link to="/">Go back home</Link>
-										</>
-									}
-								/>
-							</Routes>
-						</BrowserRouter>
-					</Layout>
-				</RecoilRoot>
-			</LocalizationProvider>
-		</ThemeProvider>
+		<QueryClientProvider client={queryClient}>
+			<SightingsContainerContext.Provider value={container}>
+				<ThemeProvider theme={theme}>
+					<LocalizationProvider dateAdapter={AdapterDateFns}>
+						<RecoilRoot>
+							<CssBaseline />
+							<Layout>
+								<HashRouter>
+									<Routes>
+										<Route path="" element={<BirdTracker />} />
+										<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
+										<Route
+											path="*"
+											element={
+												<>
+													<p>That's a 404 not found 🤔</p>
+													<Link to="/">Go back home</Link>
+												</>
+											}
+										/>
+									</Routes>
+								</HashRouter>
+							</Layout>
+						</RecoilRoot>
+					</LocalizationProvider>
+				</ThemeProvider>
+			</SightingsContainerContext.Provider>
+		</QueryClientProvider>
 	)
 }
 

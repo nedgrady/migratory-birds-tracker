@@ -1,12 +1,15 @@
+import { CosmosClient } from "@azure/cosmos"
 import Grid from "@mui/material/Unstable_Grid2"
 import { GoogleMap, useLoadScript, MarkerF } from "@react-google-maps/api"
-import { useState } from "react"
-import { sightingsAtom } from "./birdData"
+import { useEffect, useState } from "react"
+import { useQuery } from "react-query"
 import SightingList from "./SightingsList"
 import useRecoilArray from "./useRecoilArray"
+import useSightings from "./useSightings"
 type Libraries = ("drawing" | "geometry" | "localContext" | "places" | "visualization")[]
 
 const libraries: Libraries = ["visualization", "places"]
+
 export default function BirdTracker() {
 	const { isLoaded } = useLoadScript({
 		// TODO - add to secrets
@@ -14,8 +17,8 @@ export default function BirdTracker() {
 		libraries: libraries,
 	})
 
-	const { array: sightings } = useRecoilArray(sightingsAtom)
 	const [map, setMap] = useState<google.maps.Map | null>()
+	const sightings = useSightings()
 
 	if (isLoaded) {
 		return (

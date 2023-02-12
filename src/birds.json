@@ -1,0 +1,79 @@
+[
+	{
+		"id": "0",
+		"bird": "Waxwing",
+		"source": "WLUK",
+		"timestamp": "2023-01-09T00:00:00.000Z",
+		"location": {
+			"latitude": 52.0586235933561,
+			"longitude": 1.16248352209037,
+			"description": "Blanche Street, Ipswich"
+		}
+	},
+	{
+		"id": "1",
+		"bird": "Waxwing",
+		"source": "WLUK",
+		"timestamp": "2023-01-09T00:00:00.000Z",
+		"location": {
+			"latitude": 53.3775602001747,
+			"longitude": -1.51725284567091,
+			"description": "Crosspool, Sheffield"
+		}
+	},
+	{
+		"id": "3",
+		"bird": "Waxwing",
+		"source": "WLUK",
+		"timestamp": "2023-01-01T00:00:00.000Z",
+		"location": {
+			"latitude": 52.3421326849805,
+			"longitude": 1.66134364362756,
+			"description": "Reydon Suffolk"
+		}
+	},
+	{
+		"id": "7",
+		"bird": "Waxwing",
+		"source": "WLUK",
+		"timestamp": "2023-01-09T00:00:00.000Z",
+		"location": {
+			"latitude": 52.4706329814595,
+			"longitude": 1.70393232331895,
+			"description": "Oulton broad, suffolk"
+		}
+	},
+	{
+		"id": "5",
+		"bird": "Waxwing",
+		"source": "WLUK",
+		"timestamp": "2023-01-015T00:00:00.000Z",
+		"location": {
+			"latitude": 54.2835657996553,
+			"longitude": -0.406249351463868,
+			"description": "Scarborough | North Yorkshire"
+		}
+	},
+	{
+		"id": "99",
+		"bird": "Waxwing",
+		"source": "WSUK",
+		"timestamp": "2023-01-09T00:00:00.000Z",
+		"location": {
+			"latitude": 57.2048784152022,
+			"longitude": -3.8261626431647,
+			"description": "Aviemore, Dougal Drive"
+		}
+	},
+	{
+		"id": "6",
+		"bird": "Waxwing",
+		"source": "WSUK",
+		"timestamp": "2023-01-09T00:00:00.000Z",
+		"location": {
+			"latitude": 55.8057644580282,
+			"longitude": -4.27077231621384,
+			"description": "Glasgow on Clarkston Road"
+		}
+	}
+]
