@@ -1,18 +1,22 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "prestart": "npm run build",
-    "start": "func start",
-    "test": "echo \"No tests yet...\""
-  },
-  "dependencies": {},
-  "devDependencies": {
-    "@azure/functions": "^3.0.0",
-    "@types/node": "^16.x",
-    "typescript": "^4.0.0"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "",
+	"types": "types.ts",
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w",
+		"prestart": "npm run build",
+		"start": "func start",
+		"test": "echo \"No tests yet...\""
+	},
+	"dependencies": {
+		"migratory-birds-tracker-types": "file:../types",
+		"zod": "^3.20.6"
+	},
+	"devDependencies": {
+		"@azure/functions": "^3.0.0",
+		"@types/node": "^16.x",
+		"typescript": "^4.0.0"
+	}
 }

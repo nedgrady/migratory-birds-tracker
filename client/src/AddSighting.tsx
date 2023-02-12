@@ -1,4 +1,3 @@
-import { Sighting } from "./birdData"
 import { Autocomplete, Button, FormControl, FormGroup, TextField } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker"

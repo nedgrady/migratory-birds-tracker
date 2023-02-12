@@ -1,9 +1,6 @@
 import { parseISO } from "date-fns"
 import { useMutation, useQuery, useQueryClient } from "react-query"
-import { Sighting } from "./birdData"
-import { Serialized } from "./types"
-
-type SightingDto = Serialized<Sighting>
+import { Sighting, SightingDto } from "migratory-birds-tracker-types"
 
 export default function useSightings(): Sighting[] {
 	const url = "https://migratory-birds-tracker.azurewebsites.net/api/sightings-get"
