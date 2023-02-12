@@ -23,9 +23,9 @@ jobs:
               with:
                   node-version: 18.x
             - name: Install NPM Dependencies
-              run: npm i
+              run: npm install -w client
             - name: Build Project
-              run: npm run build
+              run: npm run build -w client
             - name: Upload artifact in order to deploy
               uses: actions/upload-artifact@v2
               with:
