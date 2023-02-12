@@ -1,0 +1,25 @@
+{
+	"bindings": [
+		{
+			"authLevel": "function",
+			"type": "httpTrigger",
+			"direction": "in",
+			"name": "req",
+			"methods": ["post"]
+		},
+		{
+			"name": "outSighting",
+			"direction": "out",
+			"type": "cosmosDB",
+			"connectionStringSetting": "migratory-birds-tracker_DOCUMENTDB",
+			"databaseName": "migratory-birds-tracker",
+			"collectionName": "sightings"
+		},
+		{
+			"type": "http",
+			"direction": "out",
+			"name": "res"
+		}
+	],
+	"scriptFile": "../dist/sightings-add/index.js"
+}
