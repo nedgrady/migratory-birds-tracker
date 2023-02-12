@@ -10,8 +10,7 @@ import { RecoilRoot } from "recoil"
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
 import { QueryClientProvider, QueryClient } from "react-query"
-import { CosmosClient } from "@azure/cosmos"
-import { container, SightingsContainerContext } from "./useSightingsContainer"
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -58,32 +57,30 @@ function App() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<SightingsContainerContext.Provider value={container}>
-				<ThemeProvider theme={theme}>
-					<LocalizationProvider dateAdapter={AdapterDateFns}>
-						<RecoilRoot>
-							<CssBaseline />
-							<Layout>
-								<HashRouter>
-									<Routes>
-										<Route path="" element={<BirdTracker />} />
-										<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
-										<Route
-											path="*"
-											element={
-												<>
-													<p>That's a 404 not found 🤔</p>
-													<Link to="/">Go back home</Link>
-												</>
-											}
-										/>
-									</Routes>
-								</HashRouter>
-							</Layout>
-						</RecoilRoot>
-					</LocalizationProvider>
-				</ThemeProvider>
-			</SightingsContainerContext.Provider>
+			<ThemeProvider theme={theme}>
+				<LocalizationProvider dateAdapter={AdapterDateFns}>
+					<RecoilRoot>
+						<CssBaseline />
+						<Layout>
+							<HashRouter>
+								<Routes>
+									<Route path="" element={<BirdTracker />} />
+									<Route path="/version" element={<>{__COMMIT_HASH__}</>} />
+									<Route
+										path="*"
+										element={
+											<>
+												<p>That's a 404 not found 🤔</p>
+												<Link to="/">Go back home</Link>
+											</>
+										}
+									/>
+								</Routes>
+							</HashRouter>
+						</Layout>
+					</RecoilRoot>
+				</LocalizationProvider>
+			</ThemeProvider>
 		</QueryClientProvider>
 	)
 }
