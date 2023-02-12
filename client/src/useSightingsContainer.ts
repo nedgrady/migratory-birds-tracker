@@ -2,7 +2,7 @@ import { Container, CosmosClient } from "@azure/cosmos"
 import { createContext, useContext } from "react"
 
 const endpoint = "https://migratory-birds-tracker.documents.azure.com:443/"
-const key = "UMNgSoJs5zNCLEsfbGnHLJ9pIxsBQmUHyegVdppzzcu1c5TtA6tm4SX001g7KSm1NNpBGwsRFm1ZACDbiaKDDA=="
+const key = "XXXXXXXXXX"
 
 const client = new CosmosClient({ endpoint, key })
 
