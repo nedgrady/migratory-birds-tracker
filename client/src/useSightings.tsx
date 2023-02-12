@@ -1,7 +1,6 @@
 import { parseISO } from "date-fns"
 import { useMutation, useQuery, useQueryClient } from "react-query"
 import { Sighting } from "./birdData"
-import useSightingsContainer from "./useSightingsContainer"
 import { Serialized } from "./types"
 
 type SightingDto = Serialized<Sighting>
@@ -18,10 +17,16 @@ export default function useSightings(): Sighting[] {
 }
 
 export function useAddSighting() {
-	const container = useSightingsContainer()
 	const queryClient = useQueryClient()
 
-	return useMutation((newSighting: Sighting) => container.items.create<SightingDto>(newSighting as any), {
-		onSettled: () => queryClient.invalidateQueries("sightings"),
-	})
+	return useMutation(
+		(newSighting: Sighting) =>
+			new Promise<void>(resolve => {
+				console.log(`Adding ${newSighting}`)
+				resolve()
+			}),
+		{
+			onSettled: () => queryClient.invalidateQueries("sightings"),
+		}
+	)
 }
