@@ -6,8 +6,18 @@ on:
     pull_request:
         branches:
             - master
+env:
+    VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI: ${{ vars.VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI }}
+    VITE_MIGRATORY_BIRDS_TRACKER_SIGHTINGS_ADD_FUNCITON_KEY: ${{secrets.VITE_MIGRATORY_BIRDS_TRACKER_SIGHTINGS_ADD_FUNCITON_KEY}}
 # Functions
 jobs:
+    display-variables:
+        name: display-variables
+        runs-on: ubuntu-latest
+        steps:
+            - name: Dump Env Details
+              run: printenv
+
     # Build Job
     build:
         # Name of the job
@@ -16,9 +26,6 @@ jobs:
         runs-on: ubuntu-latest
         # Steps
         steps:
-            - name: Dump Env Details
-              run: printenv
-
             - name: Checkout Code
               uses: actions/checkout@v3
 
@@ -31,7 +38,7 @@ jobs:
               run: npm install -w client
 
             - name: Build Project
-              run: SET VITE_MIGRATORY_BIRDS_TRACKER_SIGHTINGS_ADD_FUNCITON_KEY=${{secrets.API_KEY}} && SET VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI=${{env.VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI}} && npm run build -w client
+              run: npm run build -w client
 
             - name: Upload artifact in order to deploy
               uses: actions/upload-artifact@v2
