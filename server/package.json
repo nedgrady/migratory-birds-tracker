@@ -11,7 +11,6 @@
 		"test": "echo \"No tests yet...\""
 	},
 	"dependencies": {
-		"migratory-birds-tracker-types": "file:../types",
 		"zod": "^3.20.6"
 	},
 	"devDependencies": {
