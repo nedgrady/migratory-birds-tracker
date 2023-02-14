@@ -5,7 +5,7 @@ export type Serialized<TModel> = {
 }
 
 export const LocationSchema = z.object({
-	latitue: z.number(),
+	latitude: z.number(),
 	longitude: z.number(),
 	description: z.string(),
 })
