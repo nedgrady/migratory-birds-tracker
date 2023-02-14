@@ -16,6 +16,9 @@ jobs:
         runs-on: ubuntu-latest
         # Steps
         steps:
+            - name: Dump Env Details
+              run: printenv
+
             - name: Checkout Code
               uses: actions/checkout@v3
 
@@ -28,7 +31,7 @@ jobs:
               run: npm install -w client
 
             - name: Build Project
-              run: npm run build -w client
+              run: SET VITE_MIGRATORY_BIRDS_TRACKER_SIGHTINGS_ADD_FUNCITON_KEY=${{secrets.API_KEY}} && SET VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI=${{env.VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI}} && npm run build -w client
 
             - name: Upload artifact in order to deploy
               uses: actions/upload-artifact@v2
