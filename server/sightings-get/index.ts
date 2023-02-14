@@ -1,11 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-//import { SightingDto } from "types"
 
-const httpTrigger: AzureFunction = async function (
-	context: Context,
-	req: HttpRequest,
-	inSightings //: SightingDto
-): Promise<void> {
+const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest, inSightings): Promise<void> {
 	context.log("HTTP trigger function processed a request.")
 	const name = req.query.name || (req.body && req.body.name)
 	const responseMessage = name
