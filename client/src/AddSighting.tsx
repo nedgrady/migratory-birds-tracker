@@ -4,6 +4,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker"
 import { usePlacesWidget } from "react-google-autocomplete"
 import { useState } from "react"
 import { useAddSighting } from "./useSightings"
+import { Sighting } from "migratory-birds-tracker-types/types"
 
 export function AddSighting() {
 	const [location, setLocation] = useState<google.maps.places.PlaceResult>()

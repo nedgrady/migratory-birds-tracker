@@ -5,7 +5,6 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid"
 import useRecoilArray from "./useRecoilArray"
 import { AddSighting } from "./AddSighting"
 import useSightings from "./useSightings"
-import { Sighting } from "server"
 
 const columns: GridColDef<Sighting>[] = [
 	{ field: "source", headerName: "Source" },
