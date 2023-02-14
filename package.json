@@ -2,6 +2,7 @@
 	"name": "migratory-birds-tracker",
 	"workspaces": [
 		"client",
-		"server"
+		"server",
+		"types"
 	]
 }

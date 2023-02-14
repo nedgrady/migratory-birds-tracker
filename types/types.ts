@@ -12,7 +12,7 @@ export const LocationSchema = z.object({
 
 export const EventSchema = z.object({
 	location: LocationSchema,
-	timestamp: z.date(),
+	timestamp: z.coerce.date(),
 })
 
 export const SightingSchema = z.intersection(

@@ -1,0 +1,28 @@
+{
+	"name": "migratory-birds-tracker-types",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.ts",
+	"types": "index.ts",
+	"type": "module",
+	"devDependencies": {
+		"typescript": "^4.9.4"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nedgrady/migratory-birds-tracker.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/nedgrady/migratory-birds-tracker/issues"
+	},
+	"homepage": "https://github.com/nedgrady/migratory-birds-tracker#readme",
+	"dependencies": {
+		"zod": "^3.20.6"
+	}
+}
