@@ -26,7 +26,6 @@
 		"@types/google.maps": "^3.51.0",
 		"date-fns": "^2.29.3",
 		"firebase": "^9.16.0",
-		"migratory-birds-tracker-types": "file:../types",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-google-autocomplete": "^2.7.1",
