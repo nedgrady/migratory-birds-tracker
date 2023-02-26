@@ -6,7 +6,7 @@ const sightings: SightingDto[] = [
 		id: "0",
 		bird: "Waxwing",
 		source: "WLUK",
-		timestamp: "2023-01-09T00:00:00.000Z",
+		timestamp: "2023-01-10T00:00:00.000Z",
 		location: {
 			latitude: 52.0586235933561,
 			longitude: 1.16248352209037,
@@ -21,6 +21,17 @@ const sightings: SightingDto[] = [
 		location: {
 			latitude: 53.3775602001747,
 			longitude: -1.51725284567091,
+			description: "Crosspool, Sheffield",
+		},
+	},
+	{
+		id: "3",
+		bird: "Waxwing",
+		source: "WLUK",
+		timestamp: "2023-01-11T00:00:00.000Z",
+		location: {
+			latitude: 53.4745602006747,
+			longitude: -1.44725284867091,
 			description: "Crosspool, Sheffield",
 		},
 	},
