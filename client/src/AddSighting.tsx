@@ -1,4 +1,4 @@
-import { Autocomplete, Button, FormControl, FormGroup, TextField } from "@mui/material"
+import { Autocomplete, Button, FormControl, FormGroup, TextField, TextFieldProps } from "@mui/material"
 import Grid from "@mui/material/Unstable_Grid2"
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker"
 import { usePlacesWidget } from "react-google-autocomplete"
@@ -49,7 +49,7 @@ export function AddSighting() {
 					<FormControl component={Grid}>
 						<Autocomplete
 							options={["WLUK", "WSUK"]}
-							renderInput={params => <TextField {...params} label="Source" />}
+							renderInput={(params: TextFieldProps) => <TextField {...params} label="Source" />}
 							onChange={(_, value) => setSource(value ?? "Nowhere")}
 						/>
 					</FormControl>

@@ -1,36 +1,13 @@
 import { createTheme, CssBaseline, ThemeProvider, useMediaQuery } from "@mui/material"
-import { createContext, useContext, useMemo } from "react"
+import { useMemo } from "react"
 import BirdTracker from "./BirdTracker"
 import Layout from "./Layout"
-import { Routes, Route, Link, HashRouter, BrowserRouter } from "react-router-dom"
+import { Routes, Route, Link, HashRouter } from "react-router-dom"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
 import { RecoilRoot } from "recoil"
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app"
-import { getAnalytics } from "firebase/analytics"
 import { QueryClientProvider, QueryClient } from "react-query"
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-	apiKey: "AIzaSyCdRI3H5GWGHRPHPZJO3IkGQaTOvmFcjxw",
-	authDomain: "migratory-birds-tracker.firebaseapp.com",
-	projectId: "migratory-birds-tracker",
-	storageBucket: "migratory-birds-tracker.appspot.com",
-	messagingSenderId: "676194961578",
-	appId: "1:676194961578:web:7c13a1696bc77e4edde8d3",
-	measurementId: "G-EP1CJY6K5Q",
-}
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
-const analytics = getAnalytics(app)
-
-app.automaticDataCollectionEnabled = false
+import server from "mock-server"
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -39,6 +16,8 @@ const queryClient = new QueryClient({
 		},
 	},
 })
+
+if (import.meta.env.DEV) server.start()
 
 function App() {
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")

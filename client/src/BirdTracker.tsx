@@ -23,7 +23,7 @@ export default function BirdTracker() {
 	if (isLoaded) {
 		return (
 			<Grid container spacing={4}>
-				<Grid xs={12} md={6}>
+				<Grid xs={12} md={7}>
 					<GoogleMap
 						center={map?.getCenter() ?? { lat: 53.55153, lng: -2.009018 }}
 						zoom={6}
@@ -40,7 +40,7 @@ export default function BirdTracker() {
 						))}
 					</GoogleMap>
 				</Grid>
-				<Grid xs={12} md={6}>
+				<Grid xs={12} md={5}>
 					<SightingList />
 				</Grid>
 			</Grid>

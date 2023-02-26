@@ -3,6 +3,7 @@
 	"workspaces": [
 		"client",
 		"server",
-		"types"
+		"types",
+		"mock-server"
 	]
 }
