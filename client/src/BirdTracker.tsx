@@ -8,7 +8,7 @@ import useRecoilArray from "./useRecoilArray"
 import useSightings from "./useSightings"
 import _ from "lodash"
 import { Sighting } from "migratory-birds-tracker-types/types"
-import { differenceInDays, differenceInSeconds } from "date-fns"
+import { formatRelative } from "date-fns"
 
 type Libraries = ("drawing" | "geometry" | "localContext" | "places" | "visualization")[]
 
@@ -57,16 +57,16 @@ export default function BirdTracker() {
 									sighting.timestamp,
 									firstSighting.timestamp,
 									lastSighting?.timestamp ?? new Date(),
-									0.2,
+									0.5,
 									1
 								)}
+								title={formatRelative(sighting.timestamp, new Date())}
+								icon={"bird-small.svg"}
 							/>
 						))}
 					</GoogleMap>
 				</Grid>
 				<Grid xs={12} md={5}>
-					<>{JSON.stringify(sorted[0])}</>
-					<>{JSON.stringify(sorted[1])}</>
 					<SightingList />
 				</Grid>
 			</Grid>
