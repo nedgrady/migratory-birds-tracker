@@ -39,7 +39,7 @@ function DateSlider({
 	)
 
 	return (
-		<Paper style={{ backdropFilter: "blur(5px)" }}>
+		<Paper>
 			<Grid container direction={"column"} spacing={0} sx={{ padding: "0 24px 8px 24px" }}>
 				<Grid>
 					<Stack direction="row" justifyContent="space-between">
@@ -83,14 +83,6 @@ function DateSlider({
 				</Grid>
 			</Grid>
 		</Paper>
-	)
-}
-
-function Thing() {
-	return (
-		<div>
-			<img src="bird-small.svg" />
-		</div>
 	)
 }
 
