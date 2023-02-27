@@ -6,6 +6,7 @@ declare const __COMMIT_HASH__: string
 interface ImportMetaEnv {
 	readonly VITE_MIGRATORY_BIRDS_TRACKER_API_BASE_URI: string
 	readonly VITE_MIGRATORY_BIRDS_TRACKER_SIGHTINGS_ADD_FUNCITON_KEY: string
+	readonly VITE_MIGRATORY_BIRDS_TRACKER_GOOGLE_MAPS_API_KEY: string
 	// more env variables...
 }
 
