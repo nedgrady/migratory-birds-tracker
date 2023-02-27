@@ -5,7 +5,7 @@ import SightingList from "./SightingsList"
 import useSightings from "./useSightings"
 import _ from "lodash"
 import { Sighting } from "migratory-birds-tracker-types/types"
-import { formatRelative, isWithinInterval, sub, min } from "date-fns"
+import { formatRelative, isWithinInterval, sub, min, endOfDay } from "date-fns"
 import DateSlider from "./DateSlider"
 import { Paper, useTheme } from "@mui/material"
 import { scaleDate } from "./scaleDate"
@@ -15,7 +15,7 @@ type Libraries = ("drawing" | "geometry" | "localContext" | "places" | "visualiz
 const libraries: Libraries = ["visualization", "places"]
 
 export default function BirdTracker() {
-	const now = new Date()
+	const now = endOfDay(new Date())
 	const sightings = useSightings()
 	const timestamps = sightings.map(sighting => sighting.timestamp)
 
@@ -61,8 +61,7 @@ export default function BirdTracker() {
 
 function BirdsMap(props: React.PropsWithChildren) {
 	const { isLoaded } = useLoadScript({
-		// TODO - add to secrets
-		googleMapsApiKey: "AIzaSyAryrchXqhY1TtykuGeKPA0BjjOZMcyyAM",
+		googleMapsApiKey: import.meta.env.VITE_MIGRATORY_BIRDS_TRACKER_GOOGLE_MAPS_API_KEY,
 		libraries: libraries,
 	})
 

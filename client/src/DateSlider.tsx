@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react"
 import { Paper, Slider, styled, Typography, sliderClasses } from "@mui/material"
-import { formatRelative } from "date-fns"
+import { formatRelative, isFuture } from "date-fns"
 import Grid from "@mui/material/Unstable_Grid2"
 import { Stack } from "@mui/system"
-import { pink, purple, red, grey } from "@mui/material/colors"
 
 function DateSlider({
 	minDate,
@@ -69,13 +68,15 @@ function DateSlider({
 						min={minDate.getTime()}
 						max={maxDate.getTime()}
 						valueLabelFormat={timeInMilliseconds =>
-							formatRelative(new Date(timeInMilliseconds), new Date())
+							isFuture(new Date(timeInMilliseconds))
+								? "Now"
+								: formatRelative(new Date(timeInMilliseconds), new Date())
 						}
 						marks={marks}
 						sx={{
 							width: "250px",
 							'& .MuiSlider-markLabel[data-index="1"]': {
-								left: "25px!important", // set your custom marker text color here
+								left: "25px!important",
 							},
 						}}
 					/>
